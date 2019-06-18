@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import Link from "next/link";
-import { UserContext } from "../pages/_app";
 
 export default function AppBar() {
-  const user = useContext(UserContext);
   return (
     <header className="AppBar">
       <Link href="/">

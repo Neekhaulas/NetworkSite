@@ -26,29 +26,9 @@ const RightHeader = styled.div`
 
 `;
 
-const style = `html {
-    box-sizing: border-box;
-  }
-  
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    background: #7A419B;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #7c1599 0%,#921099 48%,#7e4ae8 100%);
-    background-size: cover;
-    align-items: center;
-    justify-content: center;
-  }
-  
+const style = `
   .player {
-    max-width: 750px;
-    border: 5px solid rgba(0,0,0,0.2);
+    max-width: 300px;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
     position: relative;
     font-size: 0;

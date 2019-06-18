@@ -2,7 +2,7 @@ import { gql } from "apollo-boost";
 
 export const FETCH_CURRENT_USER = gql`
   query {
-    users {
+    me {
       id
     }
   }

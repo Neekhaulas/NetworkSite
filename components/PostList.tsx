@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import Post from "./Post";

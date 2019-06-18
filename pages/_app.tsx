@@ -6,7 +6,7 @@ import { ApolloClient, NormalizedCacheObject } from "apollo-boost";
 import GlobalStyles from "../components/GlobalStyles";
 import { FETCH_CURRENT_USER } from "../other/queries";
 
-export interface StoredUserData {
+interface StoredUserData {
   email: string;
   uid: string;
   // actually a lot more than this but for now this is all we want to deal with
@@ -33,10 +33,10 @@ class MyApp extends App<MyAppProps> {
         <ApolloProvider client={apolloClient}>
           <Query query={FETCH_CURRENT_USER}>
             {({ data } : any) => {
-              const user = data ? data.current_user : null;
+              const user = {email:'lol@test.fr', uid: 'asd'};
               return (
                 <UserContext.Provider value={user}>
-                  <Component {...pageProps} />
+                  <Component user={user} {...pageProps} />
                 </UserContext.Provider>
               );
             }}

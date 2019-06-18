@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next -p 8080",
+    "dev": "next -p 9090",
     "build": "next build",
     "now-build": "next build",
     "start": "next start"
@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-proposal-export-default-from": "7.2.0",
+    "@babel/preset-typescript": "7.3.3",
     "@types/react-timeago": "^4.1.0",
     "@zeit/next-typescript": "^1.1.1",
     "apollo-boost": "^0.4.2",
