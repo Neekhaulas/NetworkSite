@@ -33,7 +33,7 @@ class MyApp extends App<MyAppProps> {
         <ApolloProvider client={apolloClient}>
           <Query query={FETCH_CURRENT_USER}>
             {({ data } : any) => {
-              const user = {email:'lol@test.fr', uid: 'asd'};
+              const user = data !== null ? data : null;
               return (
                 <UserContext.Provider value={user}>
                   <Component user={user} {...pageProps} />

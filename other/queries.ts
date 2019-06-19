@@ -4,6 +4,8 @@ export const FETCH_CURRENT_USER = gql`
   query {
     me {
       id
+      username
+      avatar
     }
   }
 `;
