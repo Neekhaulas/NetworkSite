@@ -5,6 +5,8 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: "Open Sans", sans-serif;
+    background-color: #393e46;
+    margin: 0;
   }
 `;
 

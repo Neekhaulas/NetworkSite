@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AppBar from "../components/AppBar";
 import UserInfo from "../components/UserInfo";
 
 class User extends Component<{
@@ -14,7 +13,6 @@ class User extends Component<{
     render() {
         return (
             <div>
-                <AppBar />
                 <UserInfo id={this.props.id} />
             </div>
         )
