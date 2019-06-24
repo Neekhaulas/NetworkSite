@@ -22,6 +22,8 @@ export default function PostList() {
                         id
                         uri
                     }
+                    likes
+                    like
                     }
                 }
                 `}
@@ -30,8 +32,8 @@ export default function PostList() {
                     if (loading) return <p>Loading...</p>
                     if (error) return <p>Error</p>
 
-                    return data.posts.map(({ id, content, user, media, createdAt }: any) => (
-                        <Post key={id} content={content} user={user} media={media} date={createdAt} />
+                    return data.posts.map(({ id, content, user, media, createdAt, likes, like }: any) => (
+                        <Post key={id} id={id} content={content} user={user} media={media} date={createdAt} likes={likes} like={like} />
                     ));
                 }}
             </Query>

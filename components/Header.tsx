@@ -15,7 +15,7 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const Logo = styled.h1`
+const Logo = styled.div`
 `;
 
 const StyledHeader = styled.header`
@@ -27,7 +27,7 @@ const Header = () => (
     <div className="bar">
       <Logo>
         <Link href="/">
-          <a>Sick Fits</a>
+          <a>N Joy</a>
         </Link>
       </Logo>
       <Nav />

@@ -2,7 +2,7 @@
 const withTypescript = require("@zeit/next-typescript");
 
 module.exports = withTypescript({
-    target: "serverless",
+    target: "server",
     // customize webpack config
     // Important: return the modified config
     webpack(config, { buildId, dev, isServer, defaultLoaders }) {

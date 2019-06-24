@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import TimeAgo from "react-timeago";
+import Like from "./Like";
 
 const PostHeader = styled.div`
     display: flex;
@@ -27,10 +28,13 @@ const RightHeader = styled.div`
 `;
 
 export default class Post extends Component<{
+    id: any,
     content: string,
     user: any,
     media: any,
-    date: any
+    date: any,
+    likes: number,
+    like: boolean
 }> {
     render() {
         return(
@@ -49,6 +53,7 @@ export default class Post extends Component<{
                     </RightHeader>
                 </PostHeader>
                 <video src={this.props.media.uri} />
+                <Like id={this.props.id} count={this.props.likes} liked={this.props.like} />
             </div>
         )
     }
