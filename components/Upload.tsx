@@ -67,7 +67,12 @@ export default class Upload extends React.Component<{},
       var request = new FormData();
       request.append('method', 'INIT');
       request.append('file', file.name);
-      axios.post('http://127.0.0.1:9090/upload', request).then(async (res : any) => {
+      axios.post('http://127.0.0.1:3000/upload', request, {
+          withCredentials: true,
+          headers: {
+              Cookie: document.cookie
+          }
+      }).then(async (res : any) => {
         this.setState({uuid:res.data.uuid, mediaId: res.data.id});
         mediaId = res.data.id;
         while(start < size) {
