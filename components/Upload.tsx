@@ -55,7 +55,7 @@ export default class Upload extends React.Component<{},
     }
 
     fileUpload(file: any) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             var blob = file;
             var size = blob.size;
             let maxChunks: any = Math.max(Math.ceil(size / BYTES_PER_CHUNK), 1);
