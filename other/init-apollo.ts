@@ -17,8 +17,7 @@ if (!isBrowser) {
   (global as any).fetch = fetch;
 }
 
-export const LINK_URI =
-  "http://127.0.0.1:3000/graphql";
+export const LINK_URI = "http://35.180.116.195:3000/graphql";
 
 function create(initialState: any, linkOptions: HttpLink.Options) {
   const httpLink = new HttpLink({
