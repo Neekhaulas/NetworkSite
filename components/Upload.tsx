@@ -2,6 +2,7 @@ import { ApolloConsumer } from 'react-apollo'
 import React from 'react';
 import gql from 'graphql-tag'
 import axios from 'axios';
+import { endpointUpload } from '../config';
 
 axios.defaults.withCredentials = true;
 
@@ -69,7 +70,7 @@ export default class Upload extends React.Component<{},
             var request = new FormData();
             request.append('method', 'INIT');
             request.append('file', file.name);
-            axios.post('http://localhost:3000/upload', request, {
+            axios.post(endpointUpload, request, {
                 withCredentials: true,
             }).then(async (res: any) => {
                 this.setState({ uuid: res.data.uuid, mediaId: res.data.id });
@@ -83,7 +84,7 @@ export default class Upload extends React.Component<{},
                     data.append('qqfile', blob.slice(start, end));
                     data.append('qqfilename', file.name);
                     data.append('mediaId', res.data.id.id);
-                    await axios.post('http://localhost:3000/upload', data, {
+                    await axios.post(endpointUpload, data, {
                         withCredentials: true,
                     });
                     start = end;

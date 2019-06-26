@@ -1,10 +1,10 @@
 import withApollo from 'next-with-apollo';
 import ApolloClient from 'apollo-boost';
-import { endpoint, prodEndpoint } from '../config';
+import { endpointGraphQL } from '../config';
 
 function createClient({ headers } : any) {
   return new ApolloClient({
-    uri: process.env.NODE_ENV === 'development' ? endpoint : prodEndpoint,
+    uri: endpointGraphQL,
     request: operation => {
       operation.setContext({
         fetchOptions: {
