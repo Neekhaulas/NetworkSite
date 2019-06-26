@@ -53,7 +53,7 @@ export default class Post extends Component<{
                         </Username>
                     </RightHeader>
                 </PostHeader>
-                <video src={endpoint + this.props.media.uri + "480p.mp4"} />
+                <video controls={true} src={endpoint + this.props.media.uri + "480p.mp4"} />
                 <Like id={this.props.id} count={this.props.likes} liked={this.props.like} />
             </div>
         )
