@@ -16,6 +16,7 @@ Router.onRouteChangeError = () => {
 };
 
 const Logo = styled.div`
+  display: inline-block;
 `;
 
 const StyledHeader = styled.header`

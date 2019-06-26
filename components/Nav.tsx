@@ -3,29 +3,41 @@ import User from './User';
 import Logout from './Logout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFireAlt, faUser, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components';
+
+const NavLink = styled.a`
+  display: inline-block;
+  color: white;
+  padding: 20px;
+  line-height: 30px;
+  height: 30px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: grey;
+  }
+`;
+
+const NavBlock = styled.div`
+  display: inline-block;
+`;
 
 const Nav = () => (
   <User>
     {({ data }) => {
       const me = data ? data.me : null
       return (
-      <div>
+      <NavBlock>
         <Link href="/trending">
-          <a><FontAwesomeIcon icon={faFireAlt} /> Trending</a>
+          <NavLink><FontAwesomeIcon icon={faFireAlt} /> Trending</NavLink>
         </Link>
         <Link href="/upload">
-          <a><FontAwesomeIcon icon={faCloudUploadAlt} /> Upload</a>
+          <NavLink><FontAwesomeIcon icon={faCloudUploadAlt} /> Upload</NavLink>
         </Link>
         {me && (
           <>
-            <Link href="/sell">
-              <a>Sell</a>
-            </Link>
-            <Link href="/orders">
-              <a>Orders</a>
-            </Link>
             <Link href="/me">
-              <a>Account</a>
+              <NavLink><FontAwesomeIcon icon={faUser} /> Account</NavLink>
             </Link>
             <Logout />
           </>
@@ -33,11 +45,11 @@ const Nav = () => (
         {!me && (
             <>
                 <Link href="/login">
-                    <a><FontAwesomeIcon icon={faUser} /> Log in</a>
+                    <NavLink><FontAwesomeIcon icon={faUser} /> Log in</NavLink>
                 </Link>
             </>
         )}
-      </div>
+      </NavBlock>
     )
     }}
   </User>
