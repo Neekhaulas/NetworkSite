@@ -41,7 +41,7 @@ export default class Post extends Component<{
         return(
             <div>
                 <PostHeader>
-                    <Avatar src={this.props.user.avatar} />
+                    <Avatar src={this.props.user.avatar ? this.props.user.avatar : "https://ui-avatars.com/api/?name=" + this.props.user.username} />
                     <RightHeader>
                         <Title>{this.props.content}</Title>
                         <Username>
