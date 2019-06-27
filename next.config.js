@@ -2,7 +2,7 @@
 const withTypescript = require("@zeit/next-typescript");
 
 module.exports = withTypescript({
-    target: "serverless",
+    target: "server",
     // customize webpack config
     // Important: return the modified config
     webpack(config, { buildId, dev, isServer, defaultLoaders }) {
@@ -16,8 +16,6 @@ module.exports = withTypescript({
             test: /\.(mov|mp4)$/,
             use: 'url-loader'
           });
-
-          console.log(config.module);
 
         // Perform any other customizations to webpack config here.
         return config;

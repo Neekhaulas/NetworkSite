@@ -7,7 +7,7 @@
     "dev": "next -p 9090",
     "build": "next build",
     "now-build": "next build",
-    "start": "next start -p 9090"
+    "start": "next build && next start"
   },
   "author": "",
   "license": "ISC",
