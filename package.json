@@ -38,7 +38,7 @@
     "react-dom": "^16.8.6",
     "react-timeago": "^4.4.0",
     "styled-components": "^4.3.1",
-    "typescript": "^3.5.1"
+    "typescript": "^3.5.2"
   },
   "devDependencies": {
     "@types/enzyme": "^3.9.3",
