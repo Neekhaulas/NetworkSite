@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import Header from './Header';
 
 const theme = {
@@ -13,13 +13,21 @@ const theme = {
 };
 
 const StyledPage = styled.div`
-  color: ${props => props.theme.lightgrey};
 `;
 
 const Inner = styled.div`
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
-  padding: 2rem;
+`;
+
+const GlobalStyles = createGlobalStyle`
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+  body {
+    font-family: "Open Sans", sans-serif;
+    background-color: #393e46;
+    margin: 0;
+  }
 `;
 
 class Page extends Component {
@@ -27,6 +35,7 @@ class Page extends Component {
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
+          <GlobalStyles />
           <Header />
           <Inner>{this.props.children}</Inner>
         </StyledPage>
