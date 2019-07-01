@@ -3,6 +3,11 @@ import React from 'react';
 import gql from 'graphql-tag'
 import axios from 'axios';
 import { endpointUpload } from '../config';
+import styled from 'styled-components';
+
+const Video = styled.video`
+    width: 100%;
+`;
 
 axios.defaults.withCredentials = true;
 
@@ -11,6 +16,7 @@ const BYTES_PER_CHUNK = 1024 * 1024 * 1;
 export default class Upload extends React.Component<{},
     {
         file: any,
+        localFile: any,
         uuid: any,
         mediaId: any,
         isUploading: boolean,
@@ -21,6 +27,7 @@ export default class Upload extends React.Component<{},
         super(props);
         this.state = {
             file: null,
+            localFile: null,
             uuid: null,
             mediaId: null,
             isUploading: false,
@@ -32,7 +39,7 @@ export default class Upload extends React.Component<{},
         this.fileUpload = this.fileUpload.bind(this)
     }
     async onFormSubmit(client: any) {
-        this.fileUpload(this.state.file).then((res : any) => {
+        this.fileUpload(this.state.file).then((res: any) => {
             console.log(res);
             client.mutate({
                 mutation: gql`
@@ -52,7 +59,14 @@ export default class Upload extends React.Component<{},
         });
     }
     onChange(e: any) {
-        this.setState({ file: e.target.files[0] })
+        this.setState({ file: e.target.files[0] });
+        const reader = new FileReader();
+
+        reader.onload = (f: any) => {
+            console.log(f.target.result);
+            this.setState({ localFile: f.target.result });
+        }
+        reader.readAsDataURL(e.target.files[0]);
     }
 
     fileUpload(file: any) {
@@ -105,14 +119,23 @@ export default class Upload extends React.Component<{},
                 <p>Uploaded at {percent}%</p>
             )
         }
+        let LocalVideo: any;
+        if (this.state.localFile != null) {
+            LocalVideo = (
+                <Video src={this.state.localFile} controls={true} loop={true} />
+            )
+        }
         return (
             <ApolloConsumer>
                 {client => (
-                    <form onSubmit={(e) => { e.preventDefault(); this.onFormSubmit(client) }}>
-                        <div><textarea name="content"></textarea></div>
-                        <input type="file" onChange={this.onChange} />
-                        <button type="submit">Upload</button>
-                    </form>
+                    <div>
+                        <form onSubmit={(e) => { e.preventDefault(); this.onFormSubmit(client) }}>
+                            <div><textarea name="content"></textarea></div>
+                            <input type="file" onChange={this.onChange} />
+                            <button type="submit">Upload</button>
+                        </form>
+                        {LocalVideo}
+                    </div>
                 )}
             </ApolloConsumer>
         )
