@@ -24,7 +24,7 @@ class Login extends Component<any, any> {
         }
     }
 
-    saveToState(e: any) {
+    saveToState = (e: any) => {
         this.setState({ [e.target.name]: e.target.value });
     };
 
