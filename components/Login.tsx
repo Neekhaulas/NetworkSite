@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 import Router from "next/router";
 import { CURRENT_USER_QUERY } from "./User";
+import { Button, Block, TextInput } from './Style';
 
 const LOGIN_MUTATION = gql`
     mutation LOGIN_MUTATION($username: String!, $password: String!) {
@@ -15,7 +16,7 @@ const LOGIN_MUTATION = gql`
 class Login extends Component<any, any> {
     constructor(props: any) {
         super(props);
-        
+
         this.state = {
             username: '',
             password: ''
@@ -42,42 +43,44 @@ class Login extends Component<any, any> {
                         }
                     }
                     return (
-                        <form
-                            method="post"
-                            onSubmit={async e => {
-                                e.preventDefault();
-                                await login();
-                                this.setState({ name: '', email: '', password: '' });
-                            }}
-                        >
-                            {loading && (<p>Loading</p>)}
-                            {error && (<p>Error</p>)}
-                            <fieldset disabled={loading} aria-busy={loading}>
-                                <h2>Sign into your account</h2>
-                                <label htmlFor="email">
-                                    Email
-                                <input
-                                        type="text"
-                                        name="username"
-                                        placeholder="username"
-                                        value={this.state.username}
-                                        onChange={this.saveToState}
-                                    />
-                                </label>
-                                <label htmlFor="password">
-                                    Password
-                                <input
-                                        type="password"
-                                        name="password"
-                                        placeholder="password"
-                                        value={this.state.password}
-                                        onChange={this.saveToState}
-                                    />
-                                </label>
+                        <Block>
+                            <form
+                                method="post"
+                                onSubmit={async e => {
+                                    e.preventDefault();
+                                    await login();
+                                    this.setState({ name: '', email: '', password: '' });
+                                }}
+                            >
+                                {loading && (<p>Loading</p>)}
+                                {error && (<p>Error</p>)}
+                                <div>
+                                    <h2>Sign into your account</h2>
+                                    <label htmlFor="email">
+                                        Email
+                                    <TextInput
+                                            type="text"
+                                            name="username"
+                                            placeholder="Email or username"
+                                            value={this.state.username}
+                                            onChange={this.saveToState}
+                                        />
+                                    </label>
+                                    <label htmlFor="password">
+                                        Password
+                                    <TextInput
+                                            type="password"
+                                            name="password"
+                                            placeholder="Password"
+                                            value={this.state.password}
+                                            onChange={this.saveToState}
+                                        />
+                                    </label>
 
-                                <button type="submit">Sign In!</button>
-                            </fieldset>
-                        </form>
+                                    <Button type="submit">Sign In!</Button>
+                                </div>
+                            </form>
+                        </Block>
                     );
                 }}
             </Mutation>

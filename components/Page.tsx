@@ -21,11 +21,10 @@ const Inner = styled.div`
 `;
 
 const GlobalStyles = createGlobalStyle`
-  @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-
   body {
-    font-family: "Open Sans", sans-serif;
-    background-color: #393e46;
+    font-family: 'Roboto', sans-serif;
+    background-color: #252a38;
+    color: #ffffff;
     margin: 0;
   }
 `;

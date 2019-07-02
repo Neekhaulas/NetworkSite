@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import User from './User';
 import Logout from './Logout';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFireAlt, faUser, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFireAlt, faUser, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 const NavLink = styled.a`

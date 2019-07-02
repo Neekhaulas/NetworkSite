@@ -31,6 +31,8 @@ import Document, {
             <link rel="icon" href="/static/favicon.ico" key="favicon" />
             <style>${fontawesome.dom.css()}</style>
             {this.props.styleTags}
+            <link href="https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap" rel="stylesheet" />
+            <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
           </Head>
           <body>
             <Main />

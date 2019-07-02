@@ -3,12 +3,16 @@ import styled from "styled-components";
 import Link from "next/link";
 import TimeAgo from "react-timeago";
 import Like from "./Like";
-import {videoEndpoit} from "../config";
+import { videoEndpoit } from "../config";
+import { Block } from "./Style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 
 const PostHeader = styled.div`
     display: flex;
     flex-direction: row;
     margin: 10px;
+    justify-content: space-between;
 `;
 
 const Avatar = styled.img`
@@ -24,6 +28,7 @@ const Title = styled.div`
 
 const Video = styled.video`
     max-width: 100%;
+    height: 480px;
 `;
 
 const Username = styled.div`
@@ -36,7 +41,17 @@ const Username = styled.div`
 `;
 
 const RightHeader = styled.div`
+    display: flex;
+    align-items: flex-start;
+`;
 
+const LeftHeader = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const PostInfo = styled.div`
+    
 `;
 
 export default class Post extends Component<{
@@ -49,26 +64,31 @@ export default class Post extends Component<{
     like: boolean
 }> {
     render() {
-        return(
-            <div>
+        return (
+            <Block>
                 <PostHeader>
-                    <Link href={"/user?id=" + this.props.user.id}>
-                        <a><Avatar src={this.props.user.avatar ? this.props.user.avatar : "https://ui-avatars.com/api/?name=" + this.props.user.username} /></a>
-                    </Link>
-                    <RightHeader>
-                        <Title>{this.props.content}</Title>
-                        <Username>
-                            <Link href={"/user?id=" + this.props.user.id}>
-                                <a>{this.props.user.username}</a>
-                            </Link>
-                            -
+                    <LeftHeader>
+                        <Link href={"/user?id=" + this.props.user.id}>
+                            <a><Avatar src={this.props.user.avatar ? this.props.user.avatar : "https://ui-avatars.com/api/?name=" + this.props.user.username} /></a>
+                        </Link>
+                        <PostInfo>
+                            <Title>{this.props.content}</Title>
+                            <Username>
+                                <Link href={"/user?id=" + this.props.user.id}>
+                                    <a>{this.props.user.username}</a>
+                                </Link>
+                                -
                             <TimeAgo date={this.props.date} live={false} />
-                        </Username>
+                            </Username>
+                        </PostInfo>
+                    </LeftHeader>
+                    <RightHeader>
+                        <FontAwesomeIcon icon={faEllipsisH} />
                     </RightHeader>
                 </PostHeader>
-                <Video preload={"none"} loop={true} controls={true} src={videoEndpoit + this.props.media.uri + "480p.mp4"} />
+                <Video loop={true} controls={true} src={videoEndpoit + this.props.media.uri + "480p.mp4"} />
                 <Like id={this.props.id} count={this.props.likes} liked={this.props.like} />
-            </div>
+            </Block>
         )
     }
 } 
