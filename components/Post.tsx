@@ -28,7 +28,7 @@ const Title = styled.div`
 
 const Video = styled.video`
     max-width: 100%;
-    height: 480px;
+    max-height: 480px;
 `;
 
 const Username = styled.div`

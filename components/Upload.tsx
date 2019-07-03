@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 import axios from 'axios';
 import { endpointUpload } from '../config';
 import styled from 'styled-components';
+import { Button, TextInput } from './Style';
 
 const Video = styled.video`
     width: 100%;
@@ -21,7 +22,8 @@ export default class Upload extends React.Component<{},
         mediaId: any,
         isUploading: boolean,
         size: number,
-        current: number
+        current: number,
+        name: string
     }> {
     constructor(props: any) {
         super(props);
@@ -32,7 +34,8 @@ export default class Upload extends React.Component<{},
             mediaId: null,
             isUploading: false,
             size: 0,
-            current: 0
+            current: 0,
+            name: ''
         }
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.onChange = this.onChange.bind(this)
@@ -52,7 +55,7 @@ export default class Upload extends React.Component<{},
           }
         `,
                 variables: {
-                    content: "Hello world",
+                    content: this.state.name,
                     media: res.id
                 }
             });
@@ -130,11 +133,11 @@ export default class Upload extends React.Component<{},
                 {client => (
                     <div>
                         <form onSubmit={(e) => { e.preventDefault(); this.onFormSubmit(client) }}>
-                            <div><textarea name="content"></textarea></div>
+                            <TextInput name="title" placeholder="Video title" onChange={(e: any) => {this.setState({name: e.target.value});}} required={true} />
                             <input type="file" onChange={this.onChange} />
-                            <button type="submit">Upload</button>
+                            {LocalVideo}
+                            <Button type="submit">Upload</Button>
                         </form>
-                        {LocalVideo}
                     </div>
                 )}
             </ApolloConsumer>
