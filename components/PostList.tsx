@@ -6,6 +6,11 @@ import Post from "./Post";
 export default class PostList extends Component<{
     user?: any
 }> {
+    shouldComponentUpdate(nextProps: any) {
+        console.log(nextProps);
+        return false;
+    }
+
     render() {
         return (
             <div>

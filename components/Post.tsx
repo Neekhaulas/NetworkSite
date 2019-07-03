@@ -86,7 +86,7 @@ export default class Post extends Component<{
                         <FontAwesomeIcon icon={faEllipsisH} />
                     </RightHeader>
                 </PostHeader>
-                <Video loop={true} controls={true} src={videoEndpoit + this.props.media.uri + "480p.mp4"} />
+                <Video preload={"none"} loop={true} poster={ videoEndpoit + this.props.media.uri + ".png"} controls={true} src={videoEndpoit + this.props.media.uri + "480p.mp4"} />
                 <Like id={this.props.id} count={this.props.likes} liked={this.props.like} />
             </Block>
         )
