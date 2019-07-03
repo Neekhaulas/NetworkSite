@@ -1,5 +1,5 @@
 export const dev = `http://localhost:3000/`;
-export const prod = `https://api.neekhaulas.eu/`;
+export const prod = `https://scaleway.neekhaulas.eu/`;
 export const video = 'https://network-video.s3.amazonaws.com/';
 
 export const endpoint = (process.env.NODE_ENV === 'development' ? dev : prod);
