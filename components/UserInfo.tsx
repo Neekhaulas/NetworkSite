@@ -17,7 +17,7 @@ const GET_USER = gql`
 `;
 
 export default class UserInfo extends Component<{
-    id: number
+    id: string
 }> {
     render() {
         return (

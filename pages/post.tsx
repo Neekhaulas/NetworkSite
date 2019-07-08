@@ -1,18 +1,25 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import { gql } from "apollo-boost";
-import Post from "./Post";
+import Post from '../components/Post';
+import { Component } from 'react';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import Comments from '../components/Comments';
 
-export default class PostList extends Component<{
-    user?: any
+class PostPage extends Component<{
+    id: string
 }> {
+    static async getInitialProps({ query } : any) {
+        return {
+            id: query.id
+        };
+    }
+
     render() {
         return (
             <div>
                 <Query
                     query={gql`
-                    query Posts($user: ID) {
-                        posts(user: $user) {
+                    query Post($id: ID) {
+                        post(id: $id) {
                         id
                         content
                         createdAt
@@ -31,18 +38,21 @@ export default class PostList extends Component<{
                         }
                     }
                     `}
-                    variables={{user: this.props.user}}
+                    variables={{id: this.props.id}}
                 >
                     {({ loading, error, data }: any): any => {
                         if (loading) return <p>Loading...</p>
                         if (error) return <p>Error</p>
 
-                        return data.posts.map(({ id, content, user, media, createdAt, likes, like, comments }: any) => (
-                            <Post key={id} id={id} content={content} user={user} media={media} date={createdAt} likes={likes} like={like} comments={comments} />
-                        ));
+                        return (
+                            <Post id={data.post.id} content={data.post.content} user={data.post.user} media={data.post.media} date={data.post.createdAt} likes={data.post.likes} like={data.post.like} comments={data.post.comments} />
+                        );
                     }}
                 </Query>
+                <Comments id={this.props.id} />
             </div>
-        );
+        )
     }
 }
+
+export default PostPage;

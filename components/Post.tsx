@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef, RefObject } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import TimeAgo from "react-timeago";
@@ -6,7 +6,9 @@ import Like from "./Like";
 import { videoEndpoit } from "../config";
 import { Block } from "./Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisH, faComment } from "@fortawesome/free-solid-svg-icons";
+
+const VisibilitySensor = require('react-visibility-sensor').default;
 
 const PostHeader = styled.div`
     display: flex;
@@ -54,6 +56,14 @@ const PostInfo = styled.div`
     
 `;
 
+const Comments = styled.div`
+    display: inline-block;
+`;
+
+const PostFooter = styled.div`
+    display: flex;
+`;
+
 export default class Post extends Component<{
     id: any,
     content: string,
@@ -61,8 +71,27 @@ export default class Post extends Component<{
     media: any,
     date: any,
     likes: number,
-    like: boolean
+    like: boolean,
+    comments: number
 }> {
+    public videoPlayer: RefObject<HTMLVideoElement>;
+
+    constructor(props: any) {
+        super(props);
+        this.videoPlayer = createRef();
+    }
+
+    onChange = (isVisible: boolean) => {
+        if(isVisible) {
+            this.videoPlayer.current!.play().then(_ => {
+                
+            }).catch(_ => {
+            });
+        } else {
+            this.videoPlayer.current!.pause();
+        }
+    }
+
     render() {
         return (
             <Block>
@@ -78,7 +107,9 @@ export default class Post extends Component<{
                                     <a>{this.props.user.username}</a>
                                 </Link>
                                 -
-                            <TimeAgo date={this.props.date} live={false} />
+                            <Link href={"/post?id=" + this.props.id}>
+                                <a><TimeAgo date={this.props.date} live={false} /></a>
+                            </Link>
                             </Username>
                         </PostInfo>
                     </LeftHeader>
@@ -86,8 +117,15 @@ export default class Post extends Component<{
                         <FontAwesomeIcon icon={faEllipsisH} />
                     </RightHeader>
                 </PostHeader>
-                <Video preload={"none"} loop={true} poster={ videoEndpoit + this.props.media.uri + ".png"} controls={true} src={videoEndpoit + this.props.media.uri + "480p.mp4"} />
-                <Like id={this.props.id} count={this.props.likes} liked={this.props.like} />
+                <VisibilitySensor onChange={this.onChange}>
+                    <Video muted={true} ref={this.videoPlayer} loop={true} poster={videoEndpoit + this.props.media.uri + ".png"} controls={true} src={videoEndpoit + this.props.media.uri + "480p.mp4"} />
+                </VisibilitySensor>
+                <PostFooter>
+                    <Like id={this.props.id} count={this.props.likes} liked={this.props.like} />
+                    <Comments>
+                        <FontAwesomeIcon icon={faComment} /> {this.props.comments}
+                    </Comments>
+                </PostFooter>
             </Block>
         )
     }
