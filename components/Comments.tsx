@@ -8,7 +8,7 @@ const GET_COMMENTS = gql`
         comments(id: $id) {
             id
             content
-            author {
+            user {
                 id
                 username
             }
