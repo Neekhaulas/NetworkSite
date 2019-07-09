@@ -1,8 +1,7 @@
 import Document, {
     Head,
     Main,
-    NextScript,
-    NextDocumentContext
+    NextScript
   } from "next/document";
   import { ServerStyleSheet } from "styled-components";
   import fontawesome from '@fortawesome/fontawesome';
@@ -12,10 +11,10 @@ import Document, {
   }
   
   export default class MyDocument extends Document<DocumentProps> {
-    static async getInitialProps({ renderPage }: NextDocumentContext) {
+    static async getInitialProps({ renderPage }: any) {
       const sheet = new ServerStyleSheet();
   
-      const page = renderPage((App) => (props) =>
+      const page = renderPage((App: any) => (props: any) =>
         sheet.collectStyles(<App {...props} />)
       );
   

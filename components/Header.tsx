@@ -6,16 +6,17 @@ import Nav from './Nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChild } from '@fortawesome/free-solid-svg-icons'
 
-Router.onRouteChangeStart = () => {
+Router.events.on('routeChangeStart', () => {
   NProgress.start();
-};
-Router.onRouteChangeComplete = () => {
-  NProgress.done();
-};
+});
 
-Router.onRouteChangeError = () => {
+Router.events.on('routeChangeComplete', () => {
   NProgress.done();
-};
+});
+
+Router.events.on('routeChangeError', () => {
+  NProgress.done();
+});
 
 const Logo = styled.div`
   display: inline-block;

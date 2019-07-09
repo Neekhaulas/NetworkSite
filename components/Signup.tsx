@@ -38,9 +38,7 @@ class Login extends Component<any, any> {
                 {(signup: any, { data, error, loading }: any) => {
                     if (data != null) {
                         if (data.signup.success === true) {
-                            Router.push({
-                                pathname: '/'
-                            });
+                            Router.push('/');
                         }
                     }
                     return (
