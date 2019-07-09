@@ -31,10 +31,10 @@ export default class Comments extends Component<{
                         if (loading) return <p>Loading...</p>
                         if (error) return <p>Error</p>
                         
-                        return data.comments.map(({id, content, createdAt, author}: any) => {
+                        return data.comments.map(({id, content, createdAt, user}: any) => {
                             return (
                                 <div key={id}>
-                                    {content} - <TimeAgo date={createdAt} live={false} />
+                                    {content} - <TimeAgo date={createdAt} live={false} /> - {user.username}
                                 </div>
                             );
                         });
