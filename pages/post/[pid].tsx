@@ -1,15 +1,15 @@
-import Post from '../components/Post';
+import Post from '../../components/Post';
 import { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import Comments from '../components/Comments';
+import Comments from '../../components/Comments';
 
 class PostPage extends Component<{
     id: string
 }> {
     static async getInitialProps({ query } : any) {
         return {
-            id: query.id
+            id: query.pid
         };
     }
 

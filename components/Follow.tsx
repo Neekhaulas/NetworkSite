@@ -1,16 +1,12 @@
 import { Component } from "react";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
-import styled from "styled-components";
+import { Button } from "./Style";
 
 const FOLLOW_USER = gql`
     mutation FOLLOW_USER($user: ID!) {
         follow(user: $user)
     }
-`;
-
-const FollowButton = styled.button`
-
 `;
 
 export default class Follow extends Component<{
@@ -24,10 +20,10 @@ export default class Follow extends Component<{
                 variables={{user: this.props.user}}
             >
                 {(follow: any) => (
-                    <FollowButton onClick={async e => {
+                    <Button onClick={async e => {
                         e.preventDefault();
                         follow();
-                    }}>Follow {this.props.followers}</FollowButton>
+                    }}>Follow {this.props.followers}</Button>
                 )}
             </Mutation>
         )
