@@ -55,11 +55,11 @@ class Login extends Component<any, any> {
                                 <div>
                                     <h2>Sign into your account</h2>
                                     <label htmlFor="email">
-                                        Email
+                                        Username
                                     <TextInput
                                             type="text"
                                             name="username"
-                                            placeholder="Email or username"
+                                            placeholder="Username"
                                             value={this.state.username}
                                             onChange={this.saveToState}
                                         />
