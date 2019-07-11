@@ -1,4 +1,5 @@
 import Post from '../../components/Post';
+import Report from '../../components/Report';
 import { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -58,6 +59,7 @@ class PostPage extends Component<{
                         );
                     }}
                 </Query>
+                <Report />
                 <Comments id={this.props.id} />
             </div>
         )

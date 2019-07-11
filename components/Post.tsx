@@ -97,17 +97,17 @@ export default class Post extends Component<{
             <Block>
                 <PostHeader>
                     <LeftHeader>
-                        <Link href={"/user/" + this.props.user.id} prefetch={false}>
+                        <Link href={"/user/[uid]"} as={"/user/" + this.props.user.id} >
                             <a><Avatar alt={this.props.user.username} src={this.props.user.avatar ? this.props.user.avatar : "https://ui-avatars.com/api/?name=" + this.props.user.username} /></a>
                         </Link>
                         <PostInfo>
                             <Title>{this.props.content}</Title>
                             <Username>
-                                <Link href={"/user/" + this.props.user.id} prefetch={false}>
+                                <Link href={"/user/[uid]"} as={"/user/" + this.props.user.id} >
                                     <a>{this.props.user.username}</a>
                                 </Link>
                                 -
-                            <Link href={"/post/" + this.props.id}>
+                            <Link href={"/post/[pid]"} as={"/user/" + this.props.id} >
                                 <a><TimeAgo date={this.props.date} live={false} /></a>
                             </Link>
                             </Username>
