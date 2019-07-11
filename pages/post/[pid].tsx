@@ -3,6 +3,8 @@ import { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Comments from '../../components/Comments';
+import Head from 'next/head';
+import { videoEndpoit } from '../../config';
 
 class PostPage extends Component<{
     id: string
@@ -45,7 +47,14 @@ class PostPage extends Component<{
                         if (error) return <p>Error</p>
 
                         return (
-                            <Post id={data.post.id} content={data.post.content} user={data.post.user} media={data.post.media} date={data.post.createdAt} likes={data.post.likes} like={data.post.like} comments={data.post.comments} />
+                            <>
+                                <Head>
+                                    <meta content={data.post.content} property={"og:title"} />
+                                    <meta content={"N Joy"} property={"og:site_name"} />
+                                    <meta content={videoEndpoit + data.post.media.uri + ".png"} property={"og:image"} />
+                                </Head>
+                                <Post id={data.post.id} content={data.post.content} user={data.post.user} media={data.post.media} date={data.post.createdAt} likes={data.post.likes} like={data.post.like} comments={data.post.comments} />
+                            </>
                         );
                     }}
                 </Query>
