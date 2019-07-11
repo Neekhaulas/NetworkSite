@@ -43,7 +43,6 @@ export default class Upload extends React.Component<{},
     }
     async onFormSubmit(client: any) {
         this.fileUpload(this.state.file).then((res: any) => {
-            console.log(res);
             client.mutate({
                 mutation: gql`
           mutation post($content: String!, $media: ID!) {
@@ -66,7 +65,6 @@ export default class Upload extends React.Component<{},
         const reader = new FileReader();
 
         reader.onload = (f: any) => {
-            console.log(f.target.result);
             this.setState({ localFile: f.target.result });
         }
         reader.readAsDataURL(e.target.files[0]);

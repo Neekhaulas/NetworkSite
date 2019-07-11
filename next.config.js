@@ -1,7 +1,4 @@
-
-const withTypescript = require("@zeit/next-typescript");
-
-module.exports = withTypescript({
+const config = {
     target: "serverless",
     // customize webpack config
     // Important: return the modified config
@@ -26,4 +23,6 @@ module.exports = withTypescript({
     webpackDevMiddleware(config) {
         return config;
     }
-});
+};
+
+module.exports = config;

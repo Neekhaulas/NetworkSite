@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import Nav from './Nav';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChild } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChild } from '@fortawesome/free-solid-svg-icons';
 
 Router.events.on('routeChangeStart', () => {
   NProgress.start();

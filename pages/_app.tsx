@@ -6,6 +6,7 @@ import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
 
 interface PageProps {
     query: any;
+    styles: any;
 }
 
 class MyApp extends App<{
@@ -13,7 +14,8 @@ class MyApp extends App<{
 }> {
     static async getInitialProps({ Component, ctx }: any) {
         let pageProps: PageProps = {
-            query: null
+            query: null,
+            styles: null
         };
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx);
@@ -24,7 +26,6 @@ class MyApp extends App<{
     }
     render() {
         const { Component, apollo, pageProps } = this.props;
-
         return (
             <Container>
                 <ApolloProvider client={apollo}>
