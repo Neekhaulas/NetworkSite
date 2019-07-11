@@ -107,7 +107,7 @@ export default class Post extends Component<{
                                     <a>{this.props.user.username}</a>
                                 </Link>
                                 -
-                            <Link href={"/post/[pid]"} as={"/user/" + this.props.id} >
+                            <Link href={"/post/[pid]"} as={"/post/" + this.props.id} >
                                 <a><TimeAgo date={this.props.date} live={false} /></a>
                             </Link>
                             </Username>
