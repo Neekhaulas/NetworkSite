@@ -1,18 +1,18 @@
 import withApollo from 'next-with-apollo';
-import ApolloClient from 'apollo-boost';
+import {ApolloClient} from 'apollo-client';
 import { endpointGraphQL } from '../config';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-boost';
 
 function createClient({ headers } : any) {
   return new ApolloClient({
-    uri: endpointGraphQL,
-    request: operation => {
-      operation.setContext({
-        fetchOptions: {
-          credentials: 'include',
-        },
-        headers,
-      });
-    },
+    ssrMode: true,
+    link: createHttpLink({
+      uri: endpointGraphQL,
+      credentials: 'include',
+      headers,
+    }),
+    cache: new InMemoryCache(),
     // local data
     /*clientState: {
       resolvers: {
