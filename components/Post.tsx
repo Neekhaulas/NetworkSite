@@ -118,7 +118,7 @@ export default class Post extends Component<{
                     </RightHeader>
                 </PostHeader>
                 <VisibilitySensor onChange={this.onChange}>
-                    <Video muted={true} ref={this.videoPlayer} loop={true} poster={videoEndpoit + this.props.media.uri + ".png"} controls={true} src={videoEndpoit + this.props.media.uri + "480p.mp4"} />
+                    <Video muted={true} ref={this.videoPlayer} loop={true} poster={videoEndpoit + this.props.media.uri + ".png"} controls={true} src={videoEndpoit + this.props.media.uri + "480p.mp4"} playsinline={true} />
                 </VisibilitySensor>
                 <PostFooter>
                     <Like id={this.props.id} count={this.props.likes} liked={this.props.like} />
