@@ -34,12 +34,12 @@ class Page extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <StyledPage>
-          <Meta />
-          <GlobalStyles />
-          <Header />
-          <Inner>{this.props.children}</Inner>
-        </StyledPage>
+          <StyledPage>
+            <Meta />
+            <GlobalStyles />
+            <Header />
+            <Inner>{this.props.children}</Inner>
+          </StyledPage>
       </ThemeProvider>
     );
   }
