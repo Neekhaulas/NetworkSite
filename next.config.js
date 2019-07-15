@@ -1,5 +1,5 @@
 const config = {
-    target: "serverless",
+    target: "server",
     // customize webpack config
     // Important: return the modified config
     webpack(config, { buildId, dev, isServer, defaultLoaders }) {
