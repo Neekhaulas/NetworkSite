@@ -1,17 +1,47 @@
 import Post from '../../components/Post';
 import Report from '../../components/Report';
 import { Component } from 'react';
-import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Comments from '../../components/Comments';
 import Head from 'next/head';
-import { videoEndpoit } from '../../config';
+import { videoEndpoit, siteURI } from '../../config';
+import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
+
+const GET_POST = gql`
+query Post($id: ID) {
+    post(id: $id) {
+    id
+    content
+    createdAt
+    user {
+        id
+        username
+        avatar
+    }
+    media {
+        id
+        uri
+    }
+    likes
+    like
+    comments
+    }
+}
+`;
 
 class PostPage extends Component<{
-    id: string
+    id: string,
+    post: any
 }> {
-    static async getInitialProps({ query } : any) {
+    static async getInitialProps({ query, apolloClient } : {query: any, apolloClient: ApolloClient<NormalizedCacheObject>}) {
+        let postQuery = await apolloClient.query({
+            query: GET_POST,
+            variables: {
+                id: query.pid
+            },
+        });
         return {
+            post: postQuery.data.post,
             id: query.pid
         };
     }
@@ -19,46 +49,15 @@ class PostPage extends Component<{
     render() {
         return (
             <div>
-                <Query
-                    query={gql`
-                    query Post($id: ID) {
-                        post(id: $id) {
-                        id
-                        content
-                        createdAt
-                        user {
-                            id
-                            username
-                            avatar
-                        }
-                        media {
-                            id
-                            uri
-                        }
-                        likes
-                        like
-                        comments
-                        }
-                    }
-                    `}
-                    variables={{id: this.props.id}}
-                >
-                    {({ loading, error, data }: any): any => {
-                        if (loading) return <p>Loading...</p>
-                        if (error) return <p>Error</p>
-
-                        return (
-                            <>
-                                <Head>
-                                    <meta content={data.post.content} property={"og:title"} />
-                                    <meta content={"N Joy"} property={"og:site_name"} />
-                                    <meta content={videoEndpoit + data.post.media.uri + ".png"} property={"og:image"} />
-                                </Head>
-                                <Post id={data.post.id} content={data.post.content} user={data.post.user} media={data.post.media} date={data.post.createdAt} likes={data.post.likes} like={data.post.like} comments={data.post.comments} />
-                            </>
-                        );
-                    }}
-                </Query>
+                <Head>
+                    <meta property={"og:title"} content={this.props.post.content} />
+                    <meta property={"og:site_name"} content={"N Joy"} />
+                    <meta property={"og:image"} content={videoEndpoit + this.props.post.media.uri + ".png"} />
+                    <meta property={"og:url"} content={siteURI + "post/" + this.props.post.id } />
+                    <meta property={"og:type"} content={"video.other"} />
+                    <meta property={"og:video"} content={videoEndpoit + this.props.post.media.uri + "480p.mp4"} />
+                </Head>
+                <Post id={this.props.post.id} content={this.props.post.content} user={this.props.post.user} media={this.props.post.media} date={this.props.post.createdAt} likes={this.props.post.likes} like={this.props.post.like} comments={this.props.post.comments} />
                 <Report />
                 <Comments id={this.props.id} />
             </div>

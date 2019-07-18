@@ -8,4 +8,6 @@ RUN npm install
 
 COPY . .
 
+RUN npm config set strict-ssl false
+
 CMD ["npm", "start"]

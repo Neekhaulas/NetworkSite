@@ -1,6 +1,6 @@
 import withApollo from 'next-with-apollo';
 import {ApolloClient} from 'apollo-client';
-import { endpointGraphQL } from '../config';
+import { endpointGraphQL, localEndpoint } from '../config';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-boost';
 
@@ -8,7 +8,7 @@ function createClient({ headers } : any) {
   return new ApolloClient({
     ssrMode: true,
     link: createHttpLink({
-      uri: endpointGraphQL,
+      uri: !process.browser ? localEndpoint : endpointGraphQL,
       credentials: 'include',
       headers,
     }),
