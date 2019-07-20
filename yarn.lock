@@ -6117,10 +6117,10 @@ node-sass@^4.12.0:
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
 
-nookies@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/nookies/-/nookies-2.0.6.tgz#c002f507093d08821d60beb253c5d3534a3f9ecc"
-  integrity sha512-Ba03gFfKmEoVVlm5ztnBvJT5RpI/ljNhBkjq/GN1tAi6FgerES1hMbkBMqr3dBRSTsZf0uU/sUQTweuWjmaDMg==
+nookies@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/nookies/-/nookies-2.0.8.tgz#e1e72349d7b5ea24ef7e96900346e8764a6851d1"
+  integrity sha512-aSJqgRxcEf4BjLjsKP/Ypc9bo0VO1mHrJp+2+1tnQUVHszcM27Ysfh0Go8thUf5eArW4lA5wfnXaEDRg+zc2wA==
   dependencies:
     cookie "^0.4.0"
     jsmin "^1.0.1"
