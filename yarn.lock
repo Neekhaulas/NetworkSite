@@ -5932,10 +5932,10 @@ next-server@9.0.2:
     styled-jsx "3.2.1"
     url "0.11.0"
 
-next-with-apollo@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/next-with-apollo/-/next-with-apollo-4.0.0.tgz#0decacb8643bacbd034605d201682a7397bc7ff5"
-  integrity sha512-ijkpH5zwapcN9VX06DcY5ea9P7XUdBPikDqMK3XgxkZ40odNwnoVs9XOF/1Rnz2mKNzXkyvIJ/h+0P/foDjFfA==
+next-with-apollo@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/next-with-apollo/-/next-with-apollo-4.1.1.tgz#405044e6ead1439190181353e3ef086f148a9115"
+  integrity sha512-jOqe8T93rdhvspoGbYROT4ghnqdKuWHI0UPvQwwP3SKEHvVDowZO13DBauZI8irgcxsz82YYqksq3tWLi+Cqxw==
   dependencies:
     "@apollo/react-ssr" "^0.1.0-beta.1"
     isomorphic-unfetch "^3.0.0"
