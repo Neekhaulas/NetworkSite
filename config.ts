@@ -1,9 +1,9 @@
-export const dev = `http://localhost:3000/`;
-export const local = `http://51.158.104.205:3000/`
-export const prod = `https://scaleway.neekhaulas.eu/`;
-export const video = 'https://network-video.s3.fr-par.scw.cloud/';
-export const prodURI = `https://network.neekhaulas.eu/`;
-export const devURI = `http://localhost:9090/`;
+export const dev = ``;
+export const local = ``
+export const prod = ``;
+export const video = '';
+export const prodURI = ``;
+export const devURI = ``;
 
 export const endpoint = (process.env.NODE_ENV === 'development' ? dev : prod);
 export const endpointGraphQL = (process.env.NODE_ENV === 'development' ? dev : prod) + 'graphql';
